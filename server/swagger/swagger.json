@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Catalogo Películas",
+    "version": "1.0.0",
+    "description": "Documentación API de catálogo de películas y series"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/peliculas": {
+      "get": {
+        "summary": "Obtiene todas las películas",
+        "responses": {
+          "200": {
+            "description": "Lista de películas",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
