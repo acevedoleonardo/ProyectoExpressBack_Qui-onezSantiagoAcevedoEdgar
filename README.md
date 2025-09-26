@@ -97,6 +97,46 @@ DB_NAME=      # Nombre de la base de datos que usará la aplicación
 PORT=         # Puerto en donde el servidor Express escuchará las peticiones HTTP
 JWT_SECRET=   # Clave secreta para la generación y validación de tokens JWT
 
+# Instalacion y configuracion 
+
+## Requisitos previos
+
+1. Tener instalado Node.js (versión 18 o superior recomendada)
+
+2. Tener acceso a MongoDB Atlas o instancia de MongoDB
+
+3. Editor de código (Visual Studio Code recomendado)
+
+4. Terminal o consola para ejecutar comandos.
+
+## Pasos para la instalacion 
+
+1. Clonar el repositorio 
+consola: git clone <url-del-repositorio>
+
+2. Acceder al directorio del proyecto 
+consola: cd ProyectoExpress
+
+3. Instalar dependencias 
+consola: npm install 
+
+4. Configurar variables de entorno
+    - Crear archivo .env en la raiz del proyecto 
+    - Añadir las variables necesarias con sus valores: 
+        {
+        MONGODB_URI=tu-cadena-de-conexion-mongodb
+        DB_NAME=nombre_base_datos
+        PORT=3000
+        JWT_SECRET=clave_ultrasecreta
+        }
+
+5. Iniciar el servidor 
+Consola: node index.js 
+
+6. Verificar que el servidor esté corriendo 
+consola: Servidor corriendo en puerto 3000
+
+
 
 # Elaborado Por: 
 
