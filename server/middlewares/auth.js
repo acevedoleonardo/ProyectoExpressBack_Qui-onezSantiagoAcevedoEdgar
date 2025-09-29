@@ -1,29 +1,40 @@
-const passport = require('passport'); // Importa Passport para estrategias de autenticación
-const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt'); // Importa estrategia JWT para Passport
-require('dotenv').config(); // Carga variables de entorno desde .env
+// ============================================
+// CONFIGURACIÓN DE AUTENTICACIÓN JWT
+// ============================================
+
+const passport = require('passport');
+const { Strategy, ExtractJwt } = require('passport-jwt');
+const connectDB = require('../config/db');
 
 // Opciones para la estrategia JWT
-const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extrae el JWT del header Authorization Bearer
-  secretOrKey: process.env.JWT_SECRET, // Clave secreta para validar el token, desde .env
+const options = {
+  // De dónde extraemos el token (del header Authorization)
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  // Clave secreta para verificar el token
+  secretOrKey: process.env.JWT_SECRET
 };
 
-// Configuración de la estrategia JWT con Passport
-passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-  try {
-    // Aquí normalmente buscarías al usuario en la base de datos con ID del payload
-    // Pero este ejemplo básico solo verifica que el payload exista
-    if (jwt_payload) {
-      // Si el JWT es válido, se autoriza al usuario
-      return done(null, jwt_payload);
-    } else {
-      // Si no se encuentra usuario se rechaza autenticación
+// Configuramos la estrategia de autenticación
+passport.use(
+  new Strategy(options, async (payload, done) => {
+    try {
+      // Conectamos a la base de datos
+      const db = await connectDB();
+      
+      // Buscamos el usuario por su ID
+      const user = await db.collection('usuarios').findOne({ _id: payload.id });
+      
+      // Si el usuario existe, lo autenticamos
+      if (user) {
+        return done(null, user);
+      }
+      
+      // Si no existe, no autenticamos
       return done(null, false);
+    } catch (error) {
+      return done(error, false);
     }
-  } catch (error) {
-    // En caso de error se pasa al siguiente middleware de Passport
-    return done(error, false);
-  }
-}));
+  })
+);
 
 module.exports = passport;

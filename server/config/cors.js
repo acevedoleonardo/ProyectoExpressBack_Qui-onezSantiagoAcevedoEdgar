@@ -1,10 +1,21 @@
-const cors = require('cors'); // Importa el paquete CORS para Express
+// ============================================
+// CONFIGURACIÓN DE CORS
+// ============================================
 
-// Define opciones de CORS, en este caso permitir solo peticiones desde un origen específico
+// Importamos el módulo cors
+const cors = require('cors');
+
+// Configuración básica de CORS
 const corsOptions = {
-  origin: 'http://localhost:3001', // URL del frontend (puedes cambiarlo a la URL real)
-  optionsSuccessStatus: 200 // Para dar soporte a navegadores antiguos que requieren status 200 en OPTIONS
+  // Permitimos peticiones desde el frontend local
+  origin: 'http://localhost:5500', // Puerto típico de Live Server
+  // Permitimos credenciales
+  credentials: true,
+  // Métodos HTTP permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  // Headers permitidos
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-// Exporta el middleware configurado para usar en el app.js o index.js
+// Exportamos el middleware de CORS configurado
 module.exports = cors(corsOptions);

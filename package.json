@@ -1,10 +1,17 @@
 {
   "name": "proyectoexpressback_quinonezsantiagoacevedoedgar",
   "version": "1.0.0",
-  "description": "├── server             # Backend Node.js y Express\r │   ├── controllers    # Lógica de manejo de solicitudes HTTP\r │   ├── models         # Estructura de datos, conexión con la BD\r │   ├── routes         # Define rutas de la API para cada recurso\r │   ├── services       # Funciones auxiliares y reglas de negocio\r │   └── index.js       # Archivo principal para inicializar Express\r │\r ├── .env               # Variables de entorno\r ├── package.json       # Paquetes de Node.js y Express\r └── README.md          # Documentación",
+  "description": "API REST para SangarFlix - Proyecto de películas y series",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "setup": "node scripts/setup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-     "bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
@@ -13,16 +20,12 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.20.0",
     "node-fetch": "^2.7.0",
-    "node.fetch": "^1.0.0",
     "nodejs": "0.0.0",
     "nodemon": "^3.1.10",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

@@ -1,11 +1,16 @@
+// ============================================
+// MANEJADOR DE ERRORES
+// ============================================
+
+// Middleware para capturar errores
 function errorHandler(err, req, res, next) {
-  // Imprime en consola el stack trace completo del error para facilitar depuración
-  console.error(err.stack);
+  // Mostramos el error en consola
+  console.error('Error:', err.message);
   
-  // Envía una respuesta HTTP al cliente con el código de error adecuado
-  // Si err.status está definido, lo usa, si no usa 500 (error interno servidor)
+  // Enviamos respuesta de error al cliente
   res.status(err.status || 500).json({
-    message: err.message || 'Error interno en el servidor', // Envía el mensaje de error o uno genérico si no existe
+    error: true,
+    message: err.message || 'Error interno del servidor'
   });
 }
 

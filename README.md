@@ -136,6 +136,139 @@ Consola: node index.js
 6. Verificar que el servidor esté corriendo 
 consola: Servidor corriendo en puerto 3000
 
+//////////////////////////////////////////////////////////////
+
+# SangarFlix API - Backend
+
+API REST para gestión de películas, series y reseñas desarrollada con Node.js y Express.
+
+## Tecnologías
+
+- Node.js
+- Express
+- MongoDB
+- JWT (Autenticación)
+- Swagger (Documentación)
+
+## Instalación
+
+1. Clonar el repositorio
+2. Instalar dependencias:
+```bash
+npm install
+
+---
+
+## Descripción Detallada
+
+### 📁 **server/config/**
+Archivos de configuración global del servidor.
+
+#### `cors.js`
+- Configura las políticas CORS (Cross-Origin Resource Sharing)
+- Permite que el frontend se comunique con el backend
+- Define qué dominios pueden hacer peticiones a la API
+
+#### `db.js`
+- Maneja la conexión a MongoDB Atlas
+- Implementa patrón Singleton para reutilizar la conexión
+- Exporta función para obtener instancia de la base de datos
+
+#### `passport.js`
+- Configura la estrategia de autenticación JWT
+- Define cómo se validan los tokens de usuario
+- Extrae el token del header Authorization
+
+---
+
+### 📁 **server/controllers/**
+Contiene la lógica de negocio de cada recurso.
+
+#### `peliculasController.js`
+- Funciones para CRUD de películas
+- Validaciones de datos
+- Interacción con la base de datos
+- Cálculo de promedios y estadísticas
+
+**Funciones principales:**
+- `obtenerPeliculas()` - Lista todas las películas
+- `obtenerPeliculaPorId()` - Busca película específica
+- `crearPelicula()` - Registra nueva película
+- `actualizarPelicula()` - Modifica datos de película
+- `eliminarPelicula()` - Borra película
+
+---
+
+### 📁 **server/middlewares/**
+Funciones intermedias que procesan peticiones antes de llegar a los controladores.
+
+#### `auth.js`
+- Middleware de autenticación con Passport.js
+- Verifica que el token JWT sea válido
+- Extrae información del usuario autenticado
+- Protege rutas que requieren login
+
+#### `errorHandler.js`
+- Captura todos los errores de la aplicación
+- Formatea respuestas de error consistentes
+- Registra errores en consola
+- Devuelve códigos HTTP apropiados
+
+#### `validateRequest.js`
+- Valida datos de entrada usando express-validator
+- Verifica que los campos requeridos existan
+- Valida formato de emails, contraseñas, etc.
+- Devuelve errores de validación al cliente
+
+---
+
+### 📁 **server/routes/**
+Define los endpoints de la API y conecta con controladores.
+
+#### `authRoutes.js`
+Rutas de autenticación (públicas):
+- `POST /auth/register` - Registro de usuario
+- `POST /auth/login` - Inicio de sesión
+
+#### `peliculasRoutes.js`
+Rutas de películas (protegidas con JWT):
+- `GET /peliculas` - Listar todas
+- `GET /peliculas/:id` - Ver una específica
+- `POST /peliculas` - Crear nueva
+- `PUT /peliculas/:id` - Actualizar
+- `DELETE /peliculas/:id` - Eliminar
+
+---
+
+### 📁 **server/swagger/**
+Documentación interactiva de la API.
+
+#### `swagger.js`
+- Configura Swagger UI
+- Define esquema OpenAPI 3.0
+- Documenta todos los endpoints
+- Describe parámetros, respuestas y autenticación
+- Accesible en: `http://localhost:3000/api-docs`
+
+---
+
+### 📄 **Archivos raíz**
+
+#### `index.js`
+- Punto de entrada principal
+- Inicializa Express
+- Configura middlewares globales
+- Define rutas principales
+- Inicia el servidor HTTP
+
+#### `package.json`
+- Lista de dependencias del proyecto
+- Scripts de ejecución (dev, start, setup)
+- Metadatos del proyecto
+- Comandos npm disponibles
+
+#### `.env`
+Variables de entorno sensibles
 
 
 # Elaborado Por: 

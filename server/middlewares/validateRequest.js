@@ -1,13 +1,24 @@
-const { validationResult } = require('express-validator'); // Importa método para obtener errores de validación
+// ============================================
+// MIDDLEWARE DE VALIDACIÓN
+// ============================================
 
+const { validationResult } = require('express-validator');
+
+// Middleware para verificar errores de validación
 function validateRequest(req, res, next) {
-  const errors = validationResult(req); // Extrae los errores de validación de la solicitud
-
-  if (!errors.isEmpty()) { // Si existen errores de validación
-    return res.status(400).json({ errors: errors.array() }); // Responde con código 400 y lista de errores
+  // Obtenemos los errores de validación
+  const errors = validationResult(req);
+  
+  // Si hay errores, devolvemos respuesta con los errores
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ 
+      success: false,
+      errors: errors.array() 
+    });
   }
-
-  next(); // Si no hay errores, pasa al siguiente middleware o controlador
+  
+  // Si no hay errores, continuamos con la siguiente función
+  next();
 }
 
 module.exports = validateRequest;
