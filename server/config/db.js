@@ -27,3 +27,5 @@ async function connectDB() {
 }
 
 module.exports = connectDB;
+
+// En el siguiente script forma la conexion entre el icloud de mongo y el back elaborado. 
