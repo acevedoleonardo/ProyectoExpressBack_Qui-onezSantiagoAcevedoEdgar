@@ -4,6 +4,7 @@
 
 const passport = require('passport');
 const { Strategy, ExtractJwt } = require('passport-jwt');
+const { ObjectId } = require('mongodb');
 const connectDB = require('../config/db');
 
 // Opciones para la estrategia JWT
@@ -18,6 +19,9 @@ const options = {
 passport.use(
   new Strategy(options, async (payload, done) => {
     try {
+
+      console.log('🔍 Verificando token JWT, payload:', payload); // Debug log
+      
       // Conectamos a la base de datos
       const db = await connectDB();
       
