@@ -1,4 +1,3 @@
-// ============================================
 // MIDDLEWARE DE VALIDACIÓN
 // ============================================
 
@@ -21,4 +20,4 @@ function validateRequest(req, res, next) {
   next();
 }
 
-module.exports = validateRequest;
+module.exports = validate;
