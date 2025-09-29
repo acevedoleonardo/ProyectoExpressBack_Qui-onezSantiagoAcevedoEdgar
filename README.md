@@ -46,26 +46,7 @@ Estas tecnologías combinadas proveen un backend robusto, escalable y seguro, pr
 
 El proyecto sigue una estructura modular clara que facilita la escalabilidad, mantenimiento y separación de responsabilidades. A continuación se describe la organización principal de carpetas y archivos: 
 
-server/
-  config/
-    db.js               # Configuración y conexión a MongoDB Atlas
-    cors.js             # Middleware para gestión de CORS
-  controllers/
-    peliculasController.js  # Lógica de negocio y manejo de solicitudes para películas
-    authController.js       # Lógica de autenticación y usuarios (opcional)
-  middlewares/
-    auth.js              # Middleware Passport para autenticación con JWT
-    errorHandler.js      # Middleware global para manejo de errores
-    validateRequest.js   # Middleware para validación de peticiones HTTP
-  routes/
-    peliculasRoutes.js   # Definición de rutas para el catálogo de películas
-    authRoutes.js        # Rutas para autenticación (login)
-  swagger/
-    swagger.js           # Configuración de Swagger UI para documentación
-    swagger.json         # Definición OpenAPI/Swagger de los endpoints
-index.js                # Entrada principal de la aplicación (configuración del servidor)
-.env                    # Archivo para variables de entorno sensibles (no en repositorio)
- 
+
 ## Descripción
 
 - config/: Contiene configuraciones externas y de infraestructura como la conexión con la base de datos y políticas de CORS.
