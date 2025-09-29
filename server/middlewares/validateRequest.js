@@ -20,4 +20,4 @@ function validateRequest(req, res, next) {
   next();
 }
 
-module.exports = validate;
+module.exports = validateRequest;
