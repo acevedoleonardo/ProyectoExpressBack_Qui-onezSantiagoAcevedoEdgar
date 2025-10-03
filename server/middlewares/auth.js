@@ -27,8 +27,12 @@ passport.use(
       const db = await connectDB();
       
       // Buscamos el usuario por su ID
-      const user = await db.collection('usuarios').findOne({ _id: payload.id });
+      const user = await db.collection('usuarios').findOne({ _id: new ObjectId(payload.id) });
       
+      // Validamos que el ID tenga un formato correcto
+      if (!ObjectId.isValid(payload.id)) {
+      return done(null, false);
+    }
       // Si el usuario existe, lo autenticamos
       if (user) {
         return done(null, user);

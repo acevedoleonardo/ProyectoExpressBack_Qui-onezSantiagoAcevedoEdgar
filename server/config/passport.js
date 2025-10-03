@@ -10,8 +10,9 @@ const opts = {
 
 passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
   try {
-    const db = getDB();
-    const user = await db.collection('users').findOne({ _id: new require('mongodb').ObjectId(jwt_payload.id) });
+  const db = getDB(); // Obtiene la conexión a la base de datos
+  // Busca el usuario en la colección correcta 'usuarios' usando el ObjectId del payload
+  const user = await db.collection('usuarios').findOne({ _id: new require('mongodb').ObjectId(jwt_payload.id) });
     if (user) {
       return done(null, user);
     }

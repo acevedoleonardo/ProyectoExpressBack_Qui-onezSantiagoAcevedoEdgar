@@ -6,6 +6,8 @@
 // Importa la función para conectar a la base de datos
 const connectDB = require('../config/db');
 // Importa ObjectId para trabajar con IDs de MongoDB
+// Al importar ObjectId, podemos convertir strings a IDs de MongoDB
+// y validar que los IDs tengan el formato correcto
 const { ObjectId } = require('mongodb');
 
 // ==========================================
