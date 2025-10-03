@@ -7,6 +7,7 @@ const { Strategy, ExtractJwt } = require('passport-jwt');
 const { ObjectId } = require('mongodb');
 const connectDB = require('../config/db');
 
+// Nota: Las 
 // Opciones para la estrategia JWT
 const options = {
   // De dónde extraemos el token (del header Authorization)

@@ -47,7 +47,8 @@ async function startServer() {
     
     // Rutas para películas (CON autenticación JWT obligatoria)
     app.use('/peliculas', passport.authenticate('jwt', { session: false }), peliculasRoutes);
-    
+    // Posible Error de autenticacion. 
+
     // Ruta para ver documentación de la API
     swaggerSetup(app);
     
